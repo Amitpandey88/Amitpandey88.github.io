@@ -123,6 +123,15 @@ svg { fill: currentColor; }
   font-size: 1.1rem;
   font-weight: 500;
   color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-logo-img {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  display: block;
 }
 .logo-bracket { color: var(--g-start); }
 .logo-dot     { color: var(--g-end); }
@@ -735,6 +744,15 @@ svg { fill: currentColor; }
   font-family: 'JetBrains Mono', monospace;
   font-size: .95rem;
   color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.footer-logo-img {
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  display: block;
 }
 .footer-copy {
   font-size: .85rem;
