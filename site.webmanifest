@@ -1,0 +1,22 @@
+{
+  "name": "Amit Pandey | theamit.me",
+  "short_name": "theamit.me",
+  "description": "AI · Data · Software – Evolving with the tech world.",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#080b11",
+  "background_color": "#080b11"
+}
