@@ -1,0 +1,92 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  notes Note[]
+  tags  Tag[]
+}
+
+model Note {
+  id         String   @id @default(cuid())
+  userId     String
+  title      String   @default("Untitled")
+  slug       String
+  content    String   @default("")
+  excerpt    String   @default("")
+  isPinned   Boolean  @default(false)
+  isArchived Boolean  @default(false)
+  isDeleted  Boolean  @default(false)
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  noteTags    NoteTag[]
+  attachments Attachment[]
+  shareLinks  ShareLink[]
+
+  @@index([userId, updatedAt])
+  @@index([userId, isDeleted, isArchived])
+}
+
+model Tag {
+  id        String   @id @default(cuid())
+  name      String
+  color     String   @default("#6366F1")
+  userId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  noteTags NoteTag[]
+
+  @@unique([userId, name])
+  @@index([userId, name])
+}
+
+model NoteTag {
+  id     String @id @default(cuid())
+  noteId String
+  tagId  String
+
+  note Note @relation(fields: [noteId], references: [id], onDelete: Cascade)
+  tag  Tag  @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@unique([noteId, tagId])
+}
+
+model Attachment {
+  id        String   @id @default(cuid())
+  noteId    String
+  fileName  String
+  fileUrl   String
+  fileType  String
+  fileSize  Int
+  createdAt DateTime @default(now())
+
+  note Note @relation(fields: [noteId], references: [id], onDelete: Cascade)
+}
+
+model ShareLink {
+  id        String   @id @default(cuid())
+  noteId    String
+  token     String   @unique
+  isActive  Boolean  @default(true)
+  expiresAt DateTime?
+  createdAt DateTime @default(now())
+
+  note Note @relation(fields: [noteId], references: [id], onDelete: Cascade)
+}

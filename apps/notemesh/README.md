@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NoteMesh MVP
 
-## Getting Started
+NoteMesh is a fast, markdown-first note-taking web app focused on quick capture, editing, search, and tag-based organization.
 
-First, run the development server:
+## Stack
+
+- Next.js (App Router) + TypeScript
+- Tailwind CSS
+- Prisma + SQLite
+- Cookie session auth (email/password)
+- Markdown editor + live preview (`react-markdown`)
+- Zustand, Sonner, CmdK
+
+## Features in this MVP
+
+- Authentication (register/login/logout/forgot-password placeholder)
+- Protected note app routes
+- Notes CRUD with autosave
+- Pin, archive, trash restore, hard delete
+- Markdown editing with edit/preview/split modes and toolbar snippets
+- Full-text search endpoint + tag filtering
+- Theme toggle with persistence
+- Shared read-only notes via tokenized links
+- Seed demo data
+- Docker self-hosting setup
+
+## Project structure
+
+- `src/app/(auth)` auth pages
+- `src/app/(app)` authenticated pages (notes, tags, archive, trash, settings)
+- `src/app/api` route handlers
+- `src/components` reusable UI/layout/editor/notes/command components
+- `src/lib` auth/db/search/validators/utilities
+- `src/server` repositories and services
+- `src/store` Zustand stores
+- `prisma` schema and seed
+- `public/uploads` attachment storage target
+
+## Local setup
 
 ```bash
+cp .env.example .env
+npm install
+npm run prisma:generate
+npx prisma migrate dev --name init
+npm run prisma:seed
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Demo account defaults:
+- Email: `demo@notemesh.app`
+- Password: `demopassword`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Useful commands
 
-## Learn More
+```bash
+npm run lint
+npm run build
+npm run prisma:generate
+npm run prisma:migrate
+npm run prisma:seed
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Docker
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+cp .env.example .env
+docker compose up --build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The app runs at http://localhost:3000.
 
-## Deploy on Vercel
+## API overview
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Auth: `POST /api/auth/register|login|logout|forgot-password`
+- Notes: `GET/POST /api/notes`, `GET/PATCH/DELETE/PUT /api/notes/:id`
+- Note actions: `POST /api/notes/:id/duplicate|pin|archive|restore`
+- Search: `GET /api/search?q=...&tag=...&sort=...`
+- Tags: `GET/POST /api/tags`, `PATCH/DELETE /api/tags/:id`
+- Trash/Archive: `GET /api/trash`, `GET /api/archive`, `DELETE /api/trash/:id`
+- Attachments: `POST /api/notes/:id/attachments`, `DELETE /api/attachments/:id`
+- Share: `POST /api/notes/:id/share`, `DELETE /api/share/:id`, `GET /api/shared/:token`
+- Settings: `GET/PATCH /api/settings`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Notes
+
+- This MVP keeps architecture simple for self-hosting and future expansion.
+- Forgot password route is intentionally a non-email placeholder for now.

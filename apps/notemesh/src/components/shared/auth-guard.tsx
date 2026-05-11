@@ -1,7 +1,8 @@
 import { getSessionUser } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
-export default async function HomePage() {
+export async function requireAuth() {
   const user = await getSessionUser();
-  redirect(user ? "/notes" : "/login");
+  if (!user) redirect("/login");
+  return user;
 }
