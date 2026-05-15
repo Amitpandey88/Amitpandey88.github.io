@@ -1,0 +1,5 @@
+backend/.venv/
+backend/models/*.joblib
+backend/data/traffic.db
+frontend/node_modules/
+frontend/dist/
