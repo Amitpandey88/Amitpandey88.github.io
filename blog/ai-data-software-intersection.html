@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigating the Intersection of AI, Data & Software — Amit Pandey</title>
+    <meta name="description" content="An essay by Amit Pandey on the convergence of Artificial Intelligence, Data Engineering, and Software Development.">
+    
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+
+    <script>
+        (function () {
+            var saved = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+    </script>
+</head>
+<body>
+    <div class="bg-canvas">
+        <div class="bg-blob bg-blob-1"></div>
+        <div class="bg-blob bg-blob-2"></div>
+        <div class="bg-grain"></div>
+    </div>
+
+    <header class="site-header">
+        <a href="../index.html" class="header-logo">theamit.me</a>
+        
+        <div class="header-actions">
+            <nav class="header-nav">
+                <a href="../projects.html">projects</a>
+                <a href="index.html" class="active">blog</a>
+            </nav>
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </svg>
+                <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <a href="index.html" class="back-link">← back to blog</a>
+        
+        <h1 class="page-title">Navigating the Intersection of AI, Data & Software Engineering</h1>
+        <p class="post-meta">Published on July 24, 2026 • 4 min read • by Amit Pandey</p>
+
+        <article class="post-content">
+            <p>
+                The technological landscape is accelerating faster than ever before. As a 20-year-old student studying Computer & Data Science, I find the intersection of Artificial Intelligence, Data Engineering, and Software Development to be one of the most exciting places to build.
+            </p>
+
+            <blockquote>
+                "The best way to predict the future is to invent it." — Alan Kay
+            </blockquote>
+
+            <p>
+                A great AI model is only as powerful as the data pipelines feeding it and the software infrastructure serving it to users. By combining machine learning frameworks like PyTorch and TensorFlow with robust software engineering principles, we can transform raw research into real-world impact.
+            </p>
+
+            <pre><code># Sample PyTorch Model Training Snippet
+import torch
+import torch.nn as nn
+
+class FeatureClassifier(nn.Module):
+    def __init__(self, input_dim, hidden_dim, output_dim):
+        super().__init__()
+        self.net = nn.Sequential(
+            nn.Linear(input_dim, hidden_dim),
+            nn.ReLU(),
+            nn.Dropout(0.2),
+            nn.Linear(hidden_dim, output_dim)
+        )
+
+    def forward(self, x):
+        return self.net(x)</code></pre>
+
+            <p>
+                My GitHub (<a href="https://github.com/Amitpandey88" target="_blank" style="color: var(--accent);">@Amitpandey88</a>) is my laboratory where I continuously test, refine, and ship code. As technology evolves, staying curious and building in public is the best roadmap forward.
+            </p>
+        </article>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <span class="footer-credit">Amit Pandey · theamit.me</span>
+            <span class="footer-credit"><a href="index.html">← back to blog</a></span>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
