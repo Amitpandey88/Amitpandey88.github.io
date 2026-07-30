@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 
     <script>
         (function () {
-            var saved = localStorage.getItem('theme') || 'dark';
+            var saved = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', saved);
         })();
     </script>
@@ -24,7 +24,7 @@
     </div>
 
     <header class="site-header">
-        <a href="../index.html" class="header-logo">theamit.me</a>
+        <a href="../index.html" class="header-logo">theamit<span class="brand-highlight">.me</span></a>
         
         <div class="header-actions">
             <nav class="header-nav">
@@ -50,7 +50,7 @@
 
         <article class="post-content">
             <p>
-                My GitHub (<a href="https://github.com/Amitpandey88" target="_blank" style="color: var(--accent);">@Amitpandey88</a>) is my digital lab. Treating your repositories as open experiments rather than pristine final products accelerates learning tenfold.
+                My GitHub (<a href="https://github.com/Amitpandey88" target="_blank" style="color: var(--accent); font-weight: 600;">@Amitpandey88</a>) is my digital lab. Treating your repositories as open experiments rather than pristine final products accelerates learning tenfold.
             </p>
 
             <p>
