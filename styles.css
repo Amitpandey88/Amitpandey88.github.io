@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap');
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -28,7 +30,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     position: relative;
     transition: background-color 0.5s cubic-bezier(0.65, 0, 0.35, 1),
-                color 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+        color 0.5s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 :root {
@@ -187,12 +189,25 @@ html[data-theme="dark"] {
     transform: translateY(-2px);
 }
 
-.theme-toggle:active { transform: translateY(0) scale(0.95); }
+.theme-toggle:active {
+    transform: translateY(0) scale(0.95);
+}
 
-html[data-theme="light"] .moon-icon { display: block; }
-html[data-theme="light"] .sun-icon { display: none; }
-html[data-theme="dark"] .sun-icon { display: block; }
-html[data-theme="dark"] .moon-icon { display: none; }
+html[data-theme="light"] .moon-icon {
+    display: block;
+}
+
+html[data-theme="light"] .sun-icon {
+    display: none;
+}
+
+html[data-theme="dark"] .sun-icon {
+    display: block;
+}
+
+html[data-theme="dark"] .moon-icon {
+    display: none;
+}
 
 /* ═══════════════════════════════════════
    HOMEPAGE HERO (Chai Visual Aesthetic)
@@ -414,7 +429,7 @@ html[data-theme="dark"] .moon-icon { display: none; }
     mask-image: linear-gradient(to bottom, #000 60%, transparent);
 }
 
-.site-header > * {
+.site-header>* {
     pointer-events: auto;
 }
 
@@ -432,7 +447,9 @@ html[data-theme="dark"] .moon-icon { display: none; }
     color: var(--accent);
 }
 
-.header-logo:hover { opacity: 0.8; }
+.header-logo:hover {
+    opacity: 0.8;
+}
 
 .header-actions {
     display: flex;
@@ -474,8 +491,13 @@ main:not(.hero) {
 }
 
 @media (min-width: 641px) {
-    main:not(.hero) { padding: 160px 32px 120px; }
-    .site-header { padding: 24px 40px; }
+    main:not(.hero) {
+        padding: 160px 32px 120px;
+    }
+
+    .site-header {
+        padding: 24px 40px;
+    }
 }
 
 /* ═══════════════════════════════════════
@@ -667,7 +689,8 @@ h1.page-title .accent-word {
     margin-bottom: 24px;
 }
 
-.post-content ul, .post-content ol {
+.post-content ul,
+.post-content ol {
     margin-bottom: 24px;
     padding-left: 24px;
     color: var(--text-secondary);
@@ -764,36 +787,92 @@ footer:not(.home-footer) {
    ═══════════════════════════════════════ */
 
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
-.home-page .avatar-wrapper { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both; }
-.hero-label { animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both; }
-.hero-name { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both; }
-.hero-aka { animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both; }
-.hero-bio:nth-of-type(1) { animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.38s both; }
-.hero-bio:nth-of-type(2) { animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.46s both; }
-.hero-bio:nth-of-type(3) { animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.54s both; }
-.hero-ctas { animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.58s both; }
-.hero-links { animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.64s both; }
-.theme-toggle { animation: fadeIn 1s ease 0.4s both; }
+.home-page .avatar-wrapper {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+.hero-label {
+    animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+.hero-name {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+.hero-aka {
+    animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+.hero-bio:nth-of-type(1) {
+    animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.38s both;
+}
+
+.hero-bio:nth-of-type(2) {
+    animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.46s both;
+}
+
+.hero-bio:nth-of-type(3) {
+    animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.54s both;
+}
+
+.hero-ctas {
+    animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.58s both;
+}
+
+.hero-links {
+    animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.64s both;
+}
+
+.theme-toggle {
+    animation: fadeIn 1s ease 0.4s both;
+}
 
 /* Responsive tweaks */
 @media (max-width: 640px) {
-    .hero-name { font-size: 2.85rem; }
-    .bg-blob { filter: blur(75px); }
-    .hero-links { gap: 16px; }
-    .home-footer { font-size: 13px; bottom: 16px; }
+    .hero-name {
+        font-size: 2.85rem;
+    }
+
+    .bg-blob {
+        filter: blur(75px);
+    }
+
+    .hero-links {
+        gap: 16px;
+    }
+
+    .home-footer {
+        font-size: 13px;
+        bottom: 16px;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
+
+    *,
+    *::before,
+    *::after {
         animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
     }

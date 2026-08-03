@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepSeek V4 Flash 0731: Re-Post-Training & Agentic Coding — Amit Pandey</title>
+    <meta name="description" content="An in-depth analysis of DeepSeek-V4-Flash-0731, comparing the July 31 update to the older V4 Flash Preview, architectural specs, agentic coding benchmarks, and local deployment options.">
+    
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+
+    <script>
+        (function () {
+            var saved = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+    </script>
+</head>
+<body>
+    <div class="bg-canvas">
+        <div class="bg-blob bg-blob-1"></div>
+        <div class="bg-blob bg-blob-2"></div>
+        <div class="bg-grain"></div>
+    </div>
+
+    <header class="site-header">
+        <a href="../index.html" class="header-logo">theamit<span class="brand-highlight">.me</span></a>
+        
+        <div class="header-actions">
+            <nav class="header-nav">
+                <a href="../projects.html">projects</a>
+                <a href="index.html" class="active">blog</a>
+            </nav>
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </svg>
+                <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <a href="index.html" class="back-link">← back to blog</a>
+        
+        <h1 class="page-title">DeepSeek V4 Flash 0731: Re-Post-Training & Agentic Coding</h1>
+        <p class="post-meta">Published on August 3, 2026 • 6 min read • by Amit Pandey</p>
+
+        <article class="post-content">
+            <p>
+                On July 31, 2026, DeepSeek AI officially released <strong>DeepSeek-V4-Flash-0731</strong> (<code>deepseek-ai/DeepSeek-V4-Flash-0731</code>), updating the earlier <em>DeepSeek-V4-Flash-Preview</em> checkpoint.
+            </p>
+
+            <p>
+                Unlike traditional model updates that modify model dimensions or parameter counts, the 0731 release focuses on a comprehensive <strong>re-post-training alignment pipeline</strong> — driving massive jumps in autonomous agentic workflows, long-horizon coding (SWE-bench / TerminalBench), and tool execution while preserving complete architectural drop-in compatibility.
+            </p>
+
+            <blockquote>
+                "DeepSeek-V4-Flash-0731 demonstrates that post-training RL and task-specific alignment can unlock frontier-level agentic capabilities without touching base model parameters."
+            </blockquote>
+
+            <h2>1. What Changed: V4 Flash Preview vs 0731 Release</h2>
+            <p>
+                While the underlying Sparse Mixture-of-Experts (MoE) architecture remains identical between the Preview and 0731 checkpoints, DeepSeek overhauled the alignment methodology:
+            </p>
+            <ul>
+                <li><strong>Reinforcement Learning for Agentic Tasks</strong>: Enhanced SFT and RLHF tailored specifically for multi-step terminal execution, tool calling, and Codex-style interactive code editing.</li>
+                <li><strong>TerminalBench 2.1 & DeepSWE Gains</strong>: Significant score leaps over the earlier Preview model on autonomous CLI problem solving and repo-level bug resolution.</li>
+                <li><strong>Native Responses API & MIT License</strong>: Out-of-the-box support for standard structured tool-use formats, released under the permissive MIT license for open commercial and self-hosted deployment.</li>
+            </ul>
+
+            <h2>2. Architecture & Technical Specs</h2>
+            <p>
+                DeepSeek-V4-Flash-0731 inherits the high-efficiency V4 Flash MoE design:
+            </p>
+            <ul>
+                <li><strong>Parameter Scale</strong>: 284 Billion total parameters with <strong>13 Billion active parameters per token</strong>.</li>
+                <li><strong>Context Window</strong>: Native 1-Million token context length.</li>
+                <li><strong>Attention & Routing</strong>: Hybrid Compressed Sparse Attention coupled with Manifold-Constrained Hyper-Connections (mHC) for training stability and long-context KV cache reduction.</li>
+                <li><strong>Speculative Decoding</strong>: Integrated <em>DSpark</em> speculative decoding module, drastically boosting output token throughput during inference.</li>
+            </ul>
+
+            <h2>3. Benchmark Highlights: 0731 vs Frontier Models</h2>
+            <p>
+                In evaluations comparing the 0731 update against the earlier Flash Preview, Kimi K3, and proprietary frontier APIs:
+            </p>
+
+            <pre><code>Benchmark Comparison (July/Aug 2026):
+----------------------------------------------------------------------
+Model                      TerminalBench 2.1   DeepSWE   Active Params
+----------------------------------------------------------------------
+DeepSeek-V4-Flash-0731           68.4%          54.2%        13B
+DeepSeek-V4-Flash-Preview        52.1%          41.8%        13B
+Kimi K3 (2.8T MoE)               71.2%          56.8%       180B
+Claude Fable 5                   72.5%          58.1%     Proprietary
+----------------------------------------------------------------------</code></pre>
+
+            <h2>4. How to Deploy & Run DeepSeek V4 Flash 0731 Locally</h2>
+            <p>
+                With 284B total parameters (13B active per token), quantized INT4 or FP8 weights require approximately <strong>110 GB of VRAM</strong> for self-hosted deployment.
+            </p>
+
+            <h3>Option A: Serving via vLLM with Speculative Decoding</h3>
+            <pre><code># Serve DeepSeek-V4-Flash-0731 using vLLM
+python -m vllm.entrypoints.openai.api_server \
+    --model deepseek-ai/DeepSeek-V4-Flash-0731 \
+    --tensor-parallel-size 4 \
+    --quantization fp8 \
+    --speculative-model DSpark \
+    --trust-remote-code \
+    --port 8000</code></pre>
+
+            <h3>Option B: Local Running via Ollama / LM Studio</h3>
+            <p>
+                For local workstations equipped with 128GB+ unified memory (e.g. Apple Mac Studio M2/M3/M4 Ultra):
+            </p>
+            <pre><code># Pull the official 0731 GGUF release
+ollama run deepseek-v4-flash:0731
+
+# API execution test
+curl http://localhost:11434/api/generate -d '{
+  "model": "deepseek-v4-flash:0731",
+  "prompt": "Refactor this Python async worker pipeline for zero-copy streaming."
+}'</code></pre>
+
+            <h2>5. Final Thoughts</h2>
+            <p>
+                The <code>DeepSeek-V4-Flash-0731</code> update underscores the importance of continuous post-training refinement. By pairing an efficient 13B active parameter MoE backbone with agentic RL, DeepSeek provides open-source developers with an enterprise-ready model capable of competing with frontier closed-source models.
+            </p>
+        </article>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <span class="footer-credit">Amit Pandey · theamit.me</span>
+            <span class="footer-credit"><a href="index.html">← back to blog</a></span>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
